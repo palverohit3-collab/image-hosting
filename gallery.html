@@ -42,9 +42,11 @@
             }
         }
 
+        /* --- Gallery Grid --- */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Responsive grid: as many columns as possible, each at least 300px wide */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
@@ -70,40 +72,41 @@
             transform: scale(1.05) rotate(-2deg);
         }
 
-        .gallery-image {
+        /* --- Image Styling (The fix is here) --- */
+        .gallery-item img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
+            height: 350px; /* Set a consistent height */
+            object-fit: cover; /* FIX: Makes image fill container without stretching */
+            border-radius: 20px 20px 0 0; /* Match container top corners */
+            display: block;
             transition: all 0.3s ease;
-            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
         }
-
-        .gallery-item:hover .gallery-image {
+        
+        .gallery-item:hover img {
             transform: scale(1.1);
             filter: brightness(1.1);
         }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0,0,0,0.7);
-            color: white;
+        
+        /* --- Caption/Text Styling --- */
+        .gallery-text {
+            background-color: white;
             padding: 15px;
-            transform: translateY(100%);
-            transition: all 0.3s ease;
+            text-align: center;
         }
 
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
+        .gallery-text h3 {
+            margin: 5px 0;
+            font-size: 1.3rem;
+            color: #ff6b9d; /* Pink text for titles */
         }
 
+        .gallery-text p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* --- Navigation --- */
         .navigation {
             position: fixed;
             bottom: 30px;
@@ -115,6 +118,7 @@
             padding: 15px 30px;
             border-radius: 25px;
             backdrop-filter: blur(10px);
+            z-index: 20;
         }
 
         .nav-btn {
@@ -134,6 +138,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
+        /* --- Sparkle Effect --- */
         .sparkle {
             position: absolute;
             color: gold;
@@ -166,41 +171,6 @@
                 align-items: center;
             }
         }
-        .gallery-image img {
-    width: 100px;     /* adjust size */
-    height: 100px;    /* keep square */
-    object-fit: cover;
-    border-radius: 15px; /* rounded corners */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 250px; /* adjust for taller/shorter images */
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.gallery-item h3 {
-  margin: 10px 0 5px;
-  font-size: 1.2rem;
-  text-align: center;
-  color: #333;
-}
-
-.gallery-item p {
-  margin: 0;
-  text-align: center;
-  color: #666;
-  font-size: 0.95rem;
-}
-
-
     </style>
 </head>
 <body>
@@ -210,43 +180,54 @@
     </div>
 
     <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-item">
-        <img src="https://i.pinimg.com/736x/49/3c/13/493c131da7479188826872e036e7886e.jpg" alt="Birthday Balloons">
-        <h3>Birthday Balloons</h3>
-        <p>Colorful celebrations!</p>
-    </div>
+        <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/palverohit3-collab/image-hosting/refs/heads/main/508327670_18046511942624818_3088697812522590264_n.jpg" alt="Birthday Balloons">
+            <div class="gallery-text">
+                <h3>Birthday Balloons</h3>
+                <p>Colorful celebrations!</p>
+            </div>
+        </div>
 
-    <div class="gallery-item">
-        <img src="https://i.pinimg.com/736x/5c/4c/28/5c4c28227e14d20aecb634ca9b070462.jpg" alt="Birthday Cake">
-        <h3>Birthday Cake</h3>
-        <p>Sweet moments together!</p>
-    </div>
+        <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/palverohit3-collab/image-hosting/refs/heads/main/1757863349379.jpg" alt="Birthday Cake">
+            <div class="gallery-text">
+                <h3>Birthday Cake</h3>
+                <p>Sweet moments together!</p>
+            </div>
+        </div>
 
-    <div class="gallery-item">
-        <img src="https://i.pinimg.com/736x/0c/df/55/0cdf5516103bc4cfc6686e19d4af1e24.jpg" alt="Special Gifts">
-        <h3>Special Gifts</h3>
-        <p>Surprises and joy!</p>
-    </div>
+        <div class="gallery-item">
+            <img src="https://i.pinimg.com/736x/0c/df/55/0cdf5516103bc4cfc6686e19d4af1e24.jpg" alt="Special Gifts">
+            <div class="gallery-text">
+                <h3>Special Gifts</h3>
+                <p>Surprises and joy!</p>
+            </div>
+        </div>
 
-    <div class="gallery-item">
-        <img src="https://i.pinimg.com/1200x/2d/df/9c/2ddf9ccb616327c5b3c6baac03dee8d1.jpg" alt="Magical Moments">
-        <h3>Magical Moments</h3>
-        <p>Unforgettable memories!</p>
-    </div>
+        <div class="gallery-item">
+            <img src="https://i.pinimg.com/1200x/2d/df/9c/2ddf9ccb616327c5b3c6baac03dee8d1.jpg" alt="Magical Moments">
+            <div class="gallery-text">
+                <h3>Magical Moments</h3>
+                <p>Unforgettable memories!</p>
+            </div>
+        </div>
 
-    <div class="gallery-item">
-        <img src="https://i.pinimg.com/736x/e0/f0/2c/e0f02cec60622ec7cdf7cacdf4adfb7a.jpg" alt="Love & Care">
-        <h3>Love & Care</h3>
-        <p>Precious times!</p>
-    </div>
+        <div class="gallery-item">
+            <img src="https://i.pinimg.com/736x/e0/f0/2c/e0f02cec60622ec7cdf7cacdf4adfb7a.jpg" alt="Love & Care">
+            <div class="gallery-text">
+                <h3>Love & Care</h3>
+                <p>Precious times!</p>
+            </div>
+        </div>
 
-    <div class="gallery-item">
-        <img src="https://i.pinimg.com/736x/23/47/3b/23473b831b083e0534acbb5d53a18b6a.jpg" alt="Celebration">
-        <h3>Celebration</h3>
-        <p>Party time fun!</p>
+        <div class="gallery-item">
+            <img src="https://i.pinimg.com/736x/23/47/3b/23473b831b083e0534acbb5d53a18b6a.jpg" alt="Celebration">
+            <div class="gallery-text">
+                <h3>Celebration</h3>
+                <p>Party time fun!</p>
+            </div>
+        </div>
     </div>
-</div>
-
 
     <div class="navigation">
         <a href="index.html" class="nav-btn">🏠 Home</a>
@@ -273,23 +254,25 @@
         // Create sparkles continuously
         setInterval(createSparkle, 1000);
 
-        // Add hover sound effect simulation
+        // Add hover effect simulation (removed unnecessary filter change)
         document.querySelectorAll('.gallery-item').forEach(item => {
             item.addEventListener('mouseenter', () => {
-                item.style.filter = 'brightness(1.1)';
+                // Your CSS handles the hover transform, no need for JS filter here
             });
             
             item.addEventListener('mouseleave', () => {
-                item.style.filter = 'brightness(1)';
+                // Your CSS handles the hover transform
             });
         });
 
         // Add click effect
         document.querySelectorAll('.gallery-item').forEach(item => {
             item.addEventListener('click', () => {
+                // Temporarily override the CSS transform for a quick click feedback
+                const originalTransform = item.style.transform;
                 item.style.transform = 'scale(0.95)';
                 setTimeout(() => {
-                    item.style.transform = '';
+                    item.style.transform = originalTransform;
                 }, 150);
             });
         });
